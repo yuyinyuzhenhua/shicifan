@@ -1,0 +1,66 @@
+{% extends "./layout/layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/public/css/page-sj-qa-login.css" />
+<link rel="stylesheet" type="text/css" href="/public/css/page-sj-qa-logined.css" />
+<style>
+  .sui-pagination .disabled a {
+    background-color: #fafafa !important;
+    color: #999999 !important;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<!-- {% include "./layout/navbar.html" %} -->
+<div class="wrapper qa-content">
+  <div class="fl left-list">
+    <div class="tab-content">
+      <div id="index" class="tab-pane active">
+
+        <div class="tab-bottom-line">
+          <ul class="sui-nav nav-tabs">
+
+          </ul>
+        </div>
+      </div>
+      <div id="php" class="tab-pane">
+        php
+      </div>
+      <div id="js" class="tab-pane">
+        Javascript
+      </div>
+      <div id="python" class="tab-pane">
+        python
+      </div>
+      <div id="java" class="tab-pane">
+        java
+      </div>
+    </div>
+  </div>
+  <!-- 登录后 -->
+  <div class="fl right-tag">
+    <div class="block-btn">
+      <a class="sui-btn btn-block btn-share" href="/questions/new">发布话题</a>
+    </div>
+    <div class="hot-tags">
+      <div class="head">
+        <h3 class="title">热门话题</h3>
+      </div>
+      <div class="tags">
+        <ul class="sui-tag">
+          <li>
+            <a href=""></a>
+          </li>
+        </ul>
+        <a class="sui-btn btn-block btn-share" href="/tags">更多</a>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
