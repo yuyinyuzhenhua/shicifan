@@ -1,6 +1,7 @@
 const axios = require('axios')
 const svgCaptcha = require('svg-captcha');
 const User = require('../service/user')
+const config = require('../config/config.default')
 
 exports.showIndex = async (req, res, next) => {
     res.render('index.html', {sessionUser: req.session.user})
@@ -95,7 +96,7 @@ exports.checkCaptcha = async (req, res, next) => {
 exports.signin = async (req, res, next) => {
     try {
         const { email, password, remember} = req.body
-
+        console.log(remember);
         // 校验用户名是否存在
         // 校验密码是否正确
         // 登陆成功
@@ -105,6 +106,13 @@ exports.signin = async (req, res, next) => {
             email,
             password
         })
+
+
+        if (remember) {         //勾选记住我，设置   把用户名密码写入到浏览器cookie
+            res.cookie('user', JSON.stringify(user), {
+                maxAge: config.rememberMeExpires    
+            })
+        }
 
         // 用户登陆成功，记录session保存登录状态
         req.session.user = user

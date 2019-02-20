@@ -22,7 +22,7 @@ exports.findByUsername = async (username) => {
     return data[0]
   }
 
-  exports.signup = async (user) => {
+exports.signup = async (user) => {
     console.log(90909090)
     const { data } = await request({
       url: '/users/signup',

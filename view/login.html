@@ -260,6 +260,8 @@ $signinForm.validate({
         method: 'POST',
         data: $signinForm.serialize(),
         success: function (data) {
+          console.log('data===');
+          console.log(data);
           window.localStorage.setItem('userInfo', JSON.stringify(data))
           window.location.href = '/'
         },
