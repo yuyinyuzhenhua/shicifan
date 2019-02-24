@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { alg, secret } = require('../config/config.default')
+const { alg, secret } = require('../config/config.default').crypto
 
 
 // 加密
