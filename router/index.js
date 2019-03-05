@@ -11,6 +11,7 @@ const router = express.Router();
 router
     .get('/', indexCtrl.showIndex)
     .get('/login', indexCtrl.showLogin)
+    .get('/signout', indexCtrl.signout)
     .get('/captcha', indexCtrl.captcha)
 
     .post('/signup',...checkSchema([    //验证规则

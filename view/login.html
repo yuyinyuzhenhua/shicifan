@@ -114,7 +114,7 @@
           <div class="controls">
             <label>
               <input type="checkbox" name="remember" /><span class="type-text" style="font-size:12px;">记住登录状态</span> </label>
-            <button type="submit" class="sui-btn btn-danger btn-yes">登 录</button>
+            <button type="button" id="signin" class="sui-btn btn-danger btn-yes">登 录</button>
           </div>
           <div class="other-methods">
           </div>
@@ -130,6 +130,11 @@
 
     const $signupForm = $('#signup_form')
     const $signinForm = $('#signin_form')
+    
+
+    $('#signin').click(function(){
+        window.handleSignin()
+    })
 
     // $signupForm.on('submit', handleSignup)
     // $signinForm.on('submit', handleSignin)
@@ -140,8 +145,8 @@
         email: {
           required: true,
           minlength: 3,
-          maxlength: 12,
-          // remote: '/users/check' // /users/check?username=xxx
+          maxlength: 30,
+          remote: '/users/check' // /users/check?username=xxx
         },
         password: {
           required: true,
@@ -189,7 +194,8 @@
         },
         email: {
           required: '请输入邮箱',
-          email: "请输入有效的电子邮件地址"
+          remote: "请修正此字段",
+          email: "请输入有效的电子邮件地址",
         }
       },
       submitHandler: function (form) {
@@ -214,9 +220,6 @@ $signinForm.validate({
         password: {
           required: '请输入密码'
         }
-      },
-      submitHandler: function (form) {
-        window.handleSignin()
       }
     })
 
@@ -234,8 +237,8 @@ $signinForm.validate({
         data: $signupForm.serialize(),
         success: function (data) {
           console.log(data);
-          // window.localStorage.setItem('userInfo', JSON.stringify(data))
-          // window.location.href = '/'
+          window.localStorage.setItem('userInfo', JSON.stringify(data))
+          window.location.href = '/'
           if(data.code == 1) {
             alert('验证码错误')
           } else if(data.code == 4){
@@ -255,14 +258,13 @@ $signinForm.validate({
     }
 
     function handleSignin() {
+      console.log($signinForm.serialize())
       $.ajax({
         url: '/signin',
         method: 'POST',
         data: $signinForm.serialize(),
         success: function (data) {
-          console.log('data===');
-          console.log(data);
-          window.localStorage.setItem('userInfo', JSON.stringify(data))
+          window.localStorage.setItem('userInfo', JSON.stringify(data))   //???
           window.location.href = '/'
         },
         error: function (err) {

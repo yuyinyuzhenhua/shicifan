@@ -52,8 +52,7 @@ exports.signup = async (req, res, next) => {
             password,
             nickname
         })
-        console.log('ret-----');
-        console.log(ret);
+        
         req.session.user = ret
 
         res.send(ret)
@@ -72,7 +71,7 @@ exports.captcha = async (req, res, next) => {
     var captcha = svgCaptcha.create();   //创建验证码
     req.session.captcha = {
         text: captcha.text,
-        expires: +new Date() + 1000 * 15 * 60
+        expires: +new Date() + 1000 * 60 * 60 * 2
     };  //  把验证码文本存储到 session 中
     
     res.type('svg');   //设置响应内容类型
@@ -97,6 +96,7 @@ exports.signin = async (req, res, next) => {
     try {
         const { email, password, remember} = req.body
         console.log(remember);
+        console.log(password);
         // 校验用户名是否存在
         // 校验密码是否正确
         // 登陆成功
@@ -122,4 +122,14 @@ exports.signin = async (req, res, next) => {
     } catch (err) {
         next(err)
     }
+}
+
+// 退出登录
+exports.signout = async (req, res, next) => {
+    // 1.清除 Session中的登录信息
+    req.session.user = null;
+    // 2.清除cookie中的登录信息
+    res.clearCookie('user')
+    // 3.重定向到登录页
+    res.redirect('/login');
 }

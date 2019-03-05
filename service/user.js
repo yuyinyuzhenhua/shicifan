@@ -11,6 +11,17 @@ exports.findByNickname = async (nickname) => {
     return data[0]
 }
 
+exports.findByEmail = async (email) => {
+  const { data } = await request({
+      url: '/users',
+      method: "GET",
+      params: {
+          email
+      }
+  })
+  return data[0]
+}
+
 exports.findByUsername = async (username) => {
     const { data } = await request({
       url: '/users',
@@ -25,7 +36,7 @@ exports.findByUsername = async (username) => {
 exports.signup = async (user) => {
     console.log(90909090)
     const { data } = await request({
-      url: '/users/signup',
+      url: '/users/signup',  
       method: 'POST',
       data: {
         email: user.email,
