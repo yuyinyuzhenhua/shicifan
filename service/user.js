@@ -76,3 +76,11 @@ exports.create = async (user) => {
     })
     return data
   }
+
+
+  exports.findById = (userId) => {
+    return request({
+      url: `/users/${userId}`,
+      method: 'GET'
+    })
+  }

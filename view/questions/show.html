@@ -37,11 +37,11 @@
     <div class="fl title">
       <h2>{{ question.title }}</h2>
       <p>
-        作者：<a class="author" href="#">{{ question.user.nickname }}</a>
+        作者：<a class="author" href="#">{{ question.user.data.nickname }}</a>
       </p>
       <p>
         发布于{{ question.createdAt | relativeTime }} · 
-        更新于{{ question.updatedAt | relativeTime }}
+        更新于{{ question.updatedAt | relativeTime }}        
       </p>
       <p>
         {% for item in question.tags %}
@@ -80,7 +80,7 @@
           <button type="button" data-type="posts" data-type-id="{{ question._id }}" data-value="-1" data-user-id="{{ sessionUser._id }}" class="hate {{ 'active' if question.vote.value === -1 else '' }}" data-placement="right" data-toggle="tooltip" title="问题没有实际价值，缺少关键内容，没有改进余地"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
         </div>
         <div class="title">
-          <div class="markdown-body">{{ question.body | mdToHtml | safe }}</div>
+          
           <div class="clearfix"></div>
         </div>
       </div>
@@ -173,7 +173,7 @@
   dayjs.extend(dayjs_plugin_relativeTime)
   dayjs.locale('zh-cn')
 
-  window.loadComments()
+  // window.loadComments()
 
   var userInfo = JSON.parse(window.localStorage.getItem('userInfo') || '{}')
 

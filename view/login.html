@@ -237,8 +237,6 @@ $signinForm.validate({
         data: $signupForm.serialize(),
         success: function (data) {
           console.log(data);
-          window.localStorage.setItem('userInfo', JSON.stringify(data))
-          window.location.href = '/'
           if(data.code == 1) {
             alert('验证码错误')
           } else if(data.code == 4){
@@ -246,6 +244,8 @@ $signinForm.validate({
           } else if(data.code == 2){
             alert('昵称已存在')
           } 
+          window.localStorage.setItem('userInfo', JSON.stringify(data))
+          window.location.href = '/'
         },
         error: function (err) {
           console.log('注册失败：', err)
