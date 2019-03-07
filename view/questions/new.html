@@ -47,22 +47,21 @@
 
 {% block script %}
 <!-- 发布问题的富文本编辑器 -->
-<!-- <script src="/node_modules/simplemde/dist/simplemde.min.js"></script> -->
+<script src="/node_modules/simplemde/dist/simplemde.min.js"></script>
 <script>
-  // var simplemde = new SimpleMDE({
-  //   element: $('textarea[name=body]')[0],
-  //   spellChecker: false,
-  //   autosave: { // 自动保存
-  //     enabled: true,
-  //     uniqueId: "MyUniqueID", // 本地存储的 key
-  //     delay: 1000, // 保存延时
-  //   },
-  // })
+  var simplemde = new SimpleMDE({
+    element: $('textarea[name=body]')[0],
+    spellChecker: false,
+    autosave: { // 自动保存
+      enabled: true,
+      uniqueId: "MyUniqueID", // 本地存储的 key
+      delay: 1000, // 保存延时
+    },
+  })
 
   $('#form').on('submit', handleSubmit)
 
   function handleSubmit() {
-    console.log(999)
     $.ajax({
       url: '/questions',
       method: 'POST',

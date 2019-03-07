@@ -173,7 +173,7 @@
   dayjs.extend(dayjs_plugin_relativeTime)
   dayjs.locale('zh-cn')
 
-  // window.loadComments()
+  window.loadComments()
 
   var userInfo = JSON.parse(window.localStorage.getItem('userInfo') || '{}')
 
@@ -230,6 +230,8 @@
       },
       dataType: 'json',
       success: function (data) {
+        console.log(data);
+        
         $('#comment_count').html(data.length + '个回复')
         var tplStr = $('#comments-tpl').html()
         data.forEach(item => {

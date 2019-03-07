@@ -22,3 +22,25 @@ exports.findById = async (id) => {
     
     return data
 }
+
+
+exports.deleteById = async (id) => {
+  const { data } = await request({
+    url: `/posts/${id}`,
+    method: 'DELETE'
+  })
+  return data
+}
+
+exports.updateById = async (id, question) => {
+  const { data } = await request({
+    url: `/posts/${id}`,
+    method: 'PATCH',
+    data: {
+      title: question.title,
+      body: question.body,
+      tags: question.tags
+    }
+  })
+  return data
+}

@@ -20,5 +20,14 @@ router
     ]), questionCtrl.show)
 
 
+router
+    .get('/questions/:id/edit', questionCtrl.showEdit)
+    
+router
+    .patch('/questions/:id', questionCtrl.update)
+
+router
+    .delete('/questions/:id', questionCtrl.destroy)
+  
 
 module.exports = router

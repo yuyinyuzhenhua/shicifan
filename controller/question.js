@@ -9,7 +9,6 @@ exports.showNew = async (req, res, next) => {
 exports.create = async (req, res, next) => {
     try {
         const { title, tags, body } = req.body
-        console.log(title, tags, body )
         const ret = await Question.create({
           title,
           tags,
@@ -27,7 +26,6 @@ exports.show = async (req, res, next) => {
     try {
         const { id: questionId } = req.params
         const question = await Question.findById(questionId);
-        console.log(question)
         if (!question) {
             return res.render('error.html', {
                 message: '该资源不存在！'
@@ -45,4 +43,44 @@ exports.show = async (req, res, next) => {
     } catch (err) {
         next(err)
     }
+}
+
+
+// 编辑发布的内容
+exports.showEdit = async (req, res, next) => {
+    try {
+        const ret = await Question.findById(req.params.id)
+        if (!ret) {
+            return res.render('error.html', {
+                message: '该资源已不存在！'
+            })
+        }
+
+        res.render('questions/edit.html',{question: ret})
+    } catch (err){
+        next(err)
+    }
+}
+
+
+// 删除发布内容
+exports.destroy = async (req, res, next) => {
+    try {
+        const ret = await Question.deleteById(req.params.id)
+        res.send(ret)
+      } catch (err) {
+        next(err)
+      }    
+}
+
+
+// 更新发布内容
+exports.update = async (req, res, next) => {
+    const { title, tags, body } = req.body
+    const data = await Question.updateById(req.params.id, {
+      title,
+      tags,
+      body
+    })
+    res.send(data)   
 }

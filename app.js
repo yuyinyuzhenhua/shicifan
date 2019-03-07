@@ -6,6 +6,7 @@ var session = require('express-session')
 var cookieParser = require('cookie-parser')
 const rememberMe = require('./middleware/remember-me')
 const questionRouter = require('./router/question')
+const commentRouter = require('./router/comment')
 
 // 处理相对时间
 const dayjs = require('dayjs')
@@ -70,6 +71,7 @@ app.use(( req, res, next) => {
 
 app.use(router)
 app.use(questionRouter)
+app.use(commentRouter)
 
 app.listen('3000', () => {
     console.log('http://localhost:3000')
